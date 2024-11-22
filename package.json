@@ -1,0 +1,25 @@
+{
+  "name": "test-automation-task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tests:chrome": "playwright test --config=playwright.config.ts --project=Chromium --reporter=list --headed",
+    "tests:firefox": "playwright test --config=playwright.config.ts --project=Firefox --reporter=list --headed",
+    "tests:webkit": "playwright test --config=playwright.config.ts --project=Webkit --reporter=list --headed"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Everraa/test-automation-task-host.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Everraa/test-automation-task-host/issues"
+  },
+  "homepage": "https://github.com/Everraa/test-automation-task-host#readme",
+  "dependencies": {
+    "@playwright/test": "^1.49.0",
+    "prettier": "^3.3.3"
+  }
+}
