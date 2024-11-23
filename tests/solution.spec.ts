@@ -6,7 +6,7 @@ import { ProductPage } from '../page-objects/ProductPage';
 import { CartSidePanel } from '../page-objects/components/CartSidePanel';
 import { CheckoutPage } from '../page-objects/CheckoutPage';
 import { ConfirmationDialog } from '../page-objects/components/ConfirmationDialog';
-import { Test_data } from '../constants/constants';
+import { TEST_DATA } from '../constants/constants';
 
 test.describe('Visit muffin shop and initiate the purchase of any product', () => {
     test('Add item to the cart, checkout and complete an order', async ({ page }) => {
@@ -21,13 +21,14 @@ test.describe('Visit muffin shop and initiate the purchase of any product', () =
         const {
             productName,
             productPrice,
-            shippingOption,
+            country,
+            shippingAddress,
             shippingMethod,
             totalPrice,
             orderConfirmationText,
             additionalText,
             contactInformation,
-        } = Test_data;
+        } = TEST_DATA;
 
         // Visit the homepage
         await homePage.visit();
@@ -55,9 +56,12 @@ test.describe('Visit muffin shop and initiate the purchase of any product', () =
         await checkoutPage.verifyCheckoutPageTitle();
         await checkoutPage.verifyCheckoutItem(productName);
 
+        //Select Destination
+        await checkoutPage.selectShippingDestination(country);
+
         // Choose shipping and verify totals
         await checkoutPage.selectShippingOptionAndAssert(
-            shippingOption,
+            shippingAddress,
             productName,
             productPrice,
             shippingMethod,

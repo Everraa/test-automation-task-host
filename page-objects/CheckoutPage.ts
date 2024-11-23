@@ -4,8 +4,9 @@ export class CheckoutPage {
     readonly page: Page;
     readonly checkoutTitle: string = 'Checkout';
     readonly checkoutItemName: Locator;
+    readonly shippingOption: Locator;
     readonly shippingOptionsDropdown: Locator;
-    readonly shippingOption: (name: string) => Locator;
+    readonly shippingAddress: (name: string) => Locator;
     readonly shippingItemName: Locator;
     readonly shippingItemPrice: Locator;
     readonly shippingMethod: Locator;
@@ -18,12 +19,15 @@ export class CheckoutPage {
     readonly continueToPaymentButton: Locator;
     readonly paymentMethods: Locator;
     readonly placeOrderButton: Locator;
+    readonly shippingDestinationSelect: Locator;
+    readonly shippingMenu: Locator;
 
     constructor(page: Page) {
         this.page = page;
         this.checkoutItemName = page.locator('[data-qa="checkout-cartsummary-itemname-freshlybakedmuffinsdaily"]');
+        this.shippingOption = page.locator('input#input-17[type="radio"]')
         this.shippingOptionsDropdown = page.locator('[data-qa="checkout-shippingoptions-parcelselect"]');
-        this.shippingOption = (name: string) => page.getByRole('option', { name });
+        this.shippingAddress = (name: string) => page.getByRole('option', { name });
         this.shippingItemName = page.locator('[data-qa="checkout-cartsummary-itemname-freshlybakedmuffinsdaily"]');
         this.shippingItemPrice = page.locator('[data-qa="checkout-cartsummary-itemprice-freshlybakedmuffinsdaily"]');
         this.shippingMethod = page.locator('[data-qa="checkout-cartsummary-shippingprice-name"]');
@@ -36,6 +40,8 @@ export class CheckoutPage {
         this.continueToPaymentButton = page.locator('[data-qa="checkout-contactinformation-continue"]');
         this.paymentMethods = page.locator('[data-qa="checkout-paymentmethods-manual"]');
         this.placeOrderButton = page.locator('[data-qa="checkout-paymentmethods-placeorder"]');
+        this.shippingDestinationSelect = page.locator('[data-qa="checkout-shippingdestination-select"]');
+        this.shippingMenu = page.locator('#v-menu-8');
     }
 
     async verifyCheckoutPageTitle() {
@@ -46,15 +52,21 @@ export class CheckoutPage {
         await expect(this.checkoutItemName).toHaveText(productName);
     }
 
+    async selectShippingDestination(country: string) {
+        await this.shippingDestinationSelect.click();
+        await this.shippingMenu.getByText(country).click();
+    }
+
     async selectShippingOptionAndAssert(
-        shippingOptionName: string,
+        shippingAddress: string,
         productName: string,
         productPrice: string,
         shippingMethod: string,
         totalPrice: string
     ) {
+        await this.shippingOption.check();
         await this.shippingOptionsDropdown.click();
-        await this.shippingOption(shippingOptionName).click();
+        await this.shippingAddress(shippingAddress).click();
         await expect(this.shippingItemName).toHaveText(productName);
         await expect(this.shippingItemPrice).toHaveText(productPrice);
         await expect(this.shippingMethod).toHaveText(shippingMethod);
