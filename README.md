@@ -20,4 +20,4 @@ Chromium - npm run tests:chrome
 Firefox - npm run tests:firefox
 Webkit - npm run tests:webkit
 
-By default, all tests are run in headed mode (browsers will open). To run tests in headless mode, modify the command by removing --headed from the script in the package.json file.
+By default, all tests are run in headless mode (browsers will not open). To run tests in headed mode, modify the command by adding --headed in the script in the package.json file.

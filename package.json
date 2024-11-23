@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "tests:chrome": "playwright test --config=playwright.config.ts --project=Chromium --reporter=list --headed",
-    "tests:firefox": "playwright test --config=playwright.config.ts --project=Firefox --reporter=list --headed",
-    "tests:webkit": "playwright test --config=playwright.config.ts --project=Webkit --reporter=list --headed"
+    "tests:chrome": "playwright test --config=playwright.config.ts --project=Chromium --reporter=list",
+    "tests:firefox": "playwright test --config=playwright.config.ts --project=Firefox --reporter=list",
+    "tests:webkit": "playwright test --config=playwright.config.ts --project=Webkit --reporter=list"
   },
   "repository": {
     "type": "git",
