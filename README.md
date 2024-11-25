@@ -1,5 +1,5 @@
 # test-automation-task-host
-This repository contains automated tests for web applications using Playwright. Follow the steps below to clone, set up, and execute the tests.
+This repository contains automated tests for web applications using Playwright (typescript). Follow the steps below to clone, set up, and execute the tests.
 
 ## Prerequisites
 Ensure you have the following installed on your machine:
