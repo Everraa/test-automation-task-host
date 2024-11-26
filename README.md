@@ -1,4 +1,4 @@
-# test-automation-task-host
+# Test automation task
 This repository contains automated tests using Playwright (typescript). Follow the steps below to clone, set up, and execute the tests.
 
 ## Prerequisites
